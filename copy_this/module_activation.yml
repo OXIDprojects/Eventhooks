@@ -1,0 +1,19 @@
+ 1:
+  blacklist:
+    0: module_1
+    1: module_2
+    2: module_3
+  whitelist:
+    0: module_1
+    1: module_2
+    2: module_3
+
+ 2:
+   blacklist:
+     0: module_21
+     1: module_22
+     2: module_23
+   whitelist:
+     0: module_21
+     1: module_22
+     2: module_23
