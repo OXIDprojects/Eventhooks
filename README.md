@@ -296,6 +296,48 @@ oxModuleStateFixer which is an extension of oxModuleInstaller has method `fix()`
 
 We have provided you with `fix:states` command to work with oxModuleStateFixer. Type in `php oxid fix:states --help` for more information.
 
+
+## Whats new
+The following console commands were added for handling modules:
+```
+Available commands:
+ 
+  modules:activate      # Activating module with "Id" -> Coming soon
+  modules:deactivate    # Deactivate OXID modules
+```
+
+#### Suboptions of modules:activate
+```
+$ php oxid modules:activate --help
+Usage: modules:activate [options] [<module_id> <other_module_id>...]
+
+This command activate OXID modules
+
+Available options:
+  -a, --all   activate all modulesd
+  -i  --id  Only activates the named module(s)
+      --yml   activate modules by yaml-File
+
+```
+
+
+#### Suboptions of modules:deactivate
+```
+$ php oxid modules:deactivate --help
+Usage: modules:deactivate [options] <module_id> [<other_module_id>...]
+
+This command deactivates OXID modules
+
+Available options (if no option all modules will be deactivated):
+  -c, --check   Checks yaml file which modules have to be deactivated
+  -s  --single  Only deactivates the named Module(s)
+  -a  --all    Deactivate all modules
+  -l  --list    list available module Ids
+
+```
+
+
+
 ## Credits
 
 This project was inspired by [Symfony/Console](https://github.com/symfony/Console) component.
