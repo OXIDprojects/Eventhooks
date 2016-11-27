@@ -150,7 +150,7 @@ class GenerateEventhookCommand extends oxConsoleCommand
     protected function _askForMigrationOverwrite($sMigrationFilePath)
     {
         $oInput = $this->getInput();
-        $sRet = trim($oInput->prompt("Overwrite existing file $sMigrationFilePath? (n)"));
+        $sRet = trim($oInput->prompt("Overwrite existing file $sMigrationFilePath? [n]"));
         if ($sRet != '') {
             $sRet = strtolower($sRet);
         } else {

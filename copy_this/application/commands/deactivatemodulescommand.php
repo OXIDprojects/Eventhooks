@@ -218,6 +218,9 @@ class DeactivateModulesCommand extends oxConsoleCommand
     {
         $oxModule = oxNew('oxModule');
         if (!$oxModule->load('event_hook')) {
+            echo "Module event_hook missing!";
+            return;
+        } else if (!file_exists($oxModule->getModuleFullPath().'/files/libs/Spyc.php')) {
             echo "Spyc.php missing!";
             return;
         }
