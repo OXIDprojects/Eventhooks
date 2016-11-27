@@ -40,7 +40,7 @@ class ActivateModulesCommand extends oxConsoleCommand
         $oOutput->writeLn('This command activate OXID modules');
         $oOutput->writeln();
         $oOutput->writeLn('Available options:');
-        $oOutput->writeLn('  -a, --all   activate all modulesd');
+        $oOutput->writeLn('  -a, --all   activate all modules');
         $oOutput->writeLn('  -i  --id  Only activates the named module(s)');
         $oOutput->writeLn('      --yml   activate modules by yaml-File');
     }
@@ -102,7 +102,12 @@ class ActivateModulesCommand extends oxConsoleCommand
      */
     protected function _atEnd()
     {
-        include_once getShopBasePath() . "Spyc.php";
+        $oxModule = oxNew('oxModule');
+        if (!$oxModule->load('event_hook')) {
+            echo "Spyc.php missing!";
+            return;
+        }
+        include_once $oxModule->getModuleFullPath().'/files/libs/Spyc.php';
         $eventsData = Spyc::YAMLLoad('event_hook.yml');
         if (isset($eventsData['events']['generateViews'])) {
             $oShop = oxNew('oxshop');
@@ -117,8 +122,19 @@ class ActivateModulesCommand extends oxConsoleCommand
      */
     public function activateByYml()
     {
-        include_once getShopBasePath() . "Spyc.php";
-        $ymlData = Spyc::YAMLLoad('module_activation.yml');
+        $oxModule = oxNew('oxModule');
+        if (!$oxModule->load('event_hook')) {
+            echo "Spyc.php missing!";
+            return;
+        }
+        include_once $oxModule->getModuleFullPath().'/files/libs/Spyc.php';
+
+        $sModuleActivation = getShopBasePath().'application/commands/eventhook/module_activation.yml';
+        if (!file_exists($sModuleActivation)) {
+            return;
+        }
+        $ymlData = Spyc::YAMLLoad($sModuleActivation);
+
         if (isset($ymlData[1]) && !empty($ymlData[1])) {
             $aExc = $this->getModuleListByYml($ymlData);
         }

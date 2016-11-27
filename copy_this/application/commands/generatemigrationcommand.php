@@ -17,10 +17,6 @@ class GenerateMigrationCommand extends oxConsoleCommand
 
     /**
      * Configure current command
-     *
-     * Usage:
-     *   $this->setName( 'my:command' )
-     *   $this->setDescription( 'Executes my command' );
      */
     public function configure()
     {

@@ -216,8 +216,19 @@ class DeactivateModulesCommand extends oxConsoleCommand
      */
     protected function _getList()
     {
-        include_once getShopBasePath() . "Spyc.php";
-        $ymlData = Spyc::YAMLLoad('module_deactivation.yml');
+        $oxModule = oxNew('oxModule');
+        if (!$oxModule->load('event_hook')) {
+            echo "Spyc.php missing!";
+            return;
+        }
+        include_once $oxModule->getModuleFullPath().'/files/libs/Spyc.php';
+
+        $sModuleDeactivation = getShopBasePath().'application/commands/eventhook/module_activation.yml';
+        if (!file_exists($sModuleDeactivation)) {
+            return;
+        }
+
+        $ymlData = Spyc::YAMLLoad($sModuleDeactivation);
         if ($ymlData) {
             $aModuleIds=  [];
             if (isset($ymlData["1"]['whitelist'])) {

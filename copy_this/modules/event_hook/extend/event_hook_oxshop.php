@@ -45,7 +45,13 @@ class event_hook_oxshop extends event_hook_oxshop_parent
     }
     
     protected function _writeToFile(){
-        include_once getShopBasePath() . "Spyc.php";
+
+        $oxModule = oxNew('oxModule');
+        if (!$oxModule->load('event_hook')) {
+            echo "Spyc.php missing!";
+            return;
+        }
+        include_once $oxModule->getModuleFullPath().'/files/libs/Spyc.php';
         $ymlData = Spyc::YAMLLoad( getShopBasePath().$this->_sLockFileName );
         $ymlData['events']['generateViews'] = 'true';
         $yaml = Spyc::YAMLDump($ymlData, true, false, true);

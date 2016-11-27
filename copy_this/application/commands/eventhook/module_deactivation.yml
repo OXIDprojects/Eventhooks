@@ -1,0 +1,21 @@
+ 1:
+  blacklist:
+    0: invoicepdf
+    1: fcpayone
+    2: oepaypal
+  whitelist:
+    0: event_hook
+    1: oethemeswitcher
+    2: oxpspaymorrow
+
+
+
+ 2:
+   blacklist:
+     0: invoicepdf
+     1: fcpayone
+     2: oepaypal
+   whitelist:
+     0: event_hook
+     1: oethemeswitcher
+     2: oxpspaymorrow
